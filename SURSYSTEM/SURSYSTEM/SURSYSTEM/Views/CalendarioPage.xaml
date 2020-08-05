@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SURSYSTEM.Views.CalendarioPage"
+             xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+            BindingContext="{Binding Main,Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <Grid 
+            BindingContext="{Binding Calendario}"
+            x:Name="grid_layout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button
+                Text="Cambiar"
+                Grid.Row="0"
+                Command="{Binding CalendarCommnad}">
+
+            </Button>
+            <schedule:SfSchedule
+                Grid.Row="1"
+                x:Name="schedule"
+                ScheduleView="WeekView"
+                DataSource="{Binding Meetings}"
+                IsVisible="{Binding IsVisibleCalendar}">
+                <schedule:SfSchedule.AppointmentMapping>
+                    <schedule:ScheduleAppointmentMapping
+			        ColorMapping="colorPar"
+			        EndTimeMapping="To"
+			        StartTimeMapping="From"
+			        SubjectMapping="EventName" 
+			        IsAllDayMapping="AllDay"/>
+                </schedule:SfSchedule.AppointmentMapping>
+            </schedule:SfSchedule>
+            <StackLayout
+                Grid.Row="2"
+                IsVisible="{Binding IsVisibleGrid}"
+                Padding="10">
+                <ListView
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Meetings}"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    HasShadow="False"
+                                    Margin="5"
+                                    CornerRadius="10"
+                                    Padding="10"
+                                    BackgroundColor="{Binding color}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".4*"/>
+                                            <ColumnDefinition Width=".5*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame
+                                            BackgroundColor="{Binding colorPar}"
+                                            Padding="10"
+                                            CornerRadius="10">
+                                            <StackLayout>
+                                                <Label
+                                                    Text="{Binding FromDayName}"
+                                                    FontSize="20"
+                                                    HorizontalOptions="Center"
+                                                    FontAttributes="Bold"
+                                                    TextColor="White">
+
+                                                </Label>
+                                                <Label
+                                                    FontSize="30"
+                                                    TextColor="White"
+                                                    FontAttributes="Bold"
+                                                    HorizontalOptions="Center"
+                                                    Text="{Binding FromDay}">
+
+                                                </Label>
+                                            </StackLayout>
+                                        </Frame>
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label
+                                                TextColor="{Binding colorPar}"
+                                                FontSize="15"
+                                                FontAttributes="Bold"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding FromAmPm}">
+
+                                            </Label>
+                                            <Label
+                                                TextColor="{Binding colorPar}"
+                                                FontSize="30"
+                                                FontAttributes="Bold"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding FromTime}">
+
+                                            </Label>
+                                        </StackLayout>
+                                        <BoxView
+                                            Grid.Column="2"
+                                            BackgroundColor="{Binding colorPar}"
+                                            WidthRequest="1"
+                                            >
+
+                                        </BoxView>
+                                        <StackLayout
+                                            Grid.Column="3"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label
+                                                Text="Cliente"
+                                                FontSize="Large"
+                                                TextColor="{Binding colorPar}">
+
+                                            </Label>
+                                            <Label
+                                                Text="Activo"
+                                                FontSize="Large"
+                                                TextColor="{Binding colorPar}">
+
+                                            </Label>
+                                            <Label
+                                                Text="Actividad"
+                                                FontSize="Large"
+                                                TextColor="{Binding colorPar}">
+
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
