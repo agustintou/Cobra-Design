@@ -7,10 +7,11 @@ namespace SURSYSTEM.ViewModels
     public class MainViewModel
     {
         public CalendarioViewModel Calendario { get; set; }
+        public PersonasViewModel Personas { get; set; }
 
         public MainViewModel()
         {
-            Calendario = new CalendarioViewModel();
+            Personas = new PersonasViewModel();
         }
     }
 }

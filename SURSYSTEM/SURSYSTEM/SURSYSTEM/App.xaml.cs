@@ -11,7 +11,7 @@ namespace SURSYSTEM
         {
             InitializeComponent();
 
-            MainPage = new CalendarioPage();
+            MainPage = new PersonasPage();
         }
 
         protected override void OnStart()

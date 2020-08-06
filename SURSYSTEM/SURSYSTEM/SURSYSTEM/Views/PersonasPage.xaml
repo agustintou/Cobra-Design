@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SURSYSTEM.Views.PersonasPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Personas}">
+            <StackLayout
+                Padding="15"
+                HeightRequest="40"
+                BackgroundColor="#DBDFE1">
+                <Grid
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".7*"/>
+                        <ColumnDefinition Width=".3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Text="APELLIDOS Y NOMBRES"
+                        VerticalOptions="Center"
+                        FontSize="20"
+                        ></Label>
+                    <Label
+                        Grid.Column="1"
+                        Text="CARGO"
+                        VerticalOptions="Center"
+                        FontSize="20"
+                        ></Label>
+                </Grid>
+            </StackLayout>
+            <StackLayout>
+                <ListView                
+                ItemsSource="{Binding Personas}"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".7*"/>
+                                            <ColumnDefinition Width=".3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                        Grid.Column="0"
+                                        Text="{Binding ApyNom}"
+                                        FontSize="Large"
+                                    ></Label>
+                                        <Label
+                                        Grid.Column="1"
+                                        Text="{Binding Cargo}"
+                                        FontSize="Large"
+                                    ></Label>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout
+                
+                Padding="100,0,100,20">
+                <Button
+                    Text="NUEVO"
+                    TextColor="White"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    HeightRequest="40"
+                    CornerRadius="20"
+                    BackgroundColor="Green"
+                    Command="{Binding AgregarPersonaCommand}">
+
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
